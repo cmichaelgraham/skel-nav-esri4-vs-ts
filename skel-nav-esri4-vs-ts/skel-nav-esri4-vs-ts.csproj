@@ -54,7 +54,7 @@
     <Content Include="styles\styles.css" />
     <Content Include="views\app.html" />
     <Content Include="views\child-router.html" />
-    <Content Include="views\esri-map.html" />
+    <Content Include="views\esri-globe.html" />
     <Content Include="views\flickr.html" />
     <Content Include="views\nav-bar.html" />
     <Content Include="views\users.html" />
@@ -126,13 +126,14 @@
     <TypeScriptCompile Include="typings\dojo\dojo.d.ts" />
     <TypeScriptCompile Include="typings\es6.d.ts" />
     <TypeScriptCompile Include="typings\esri\esri.d.ts" />
+    <TypeScriptCompile Include="typings\esri\esri4.d.ts" />
     <TypeScriptCompile Include="typings\nprogress.d.ts" />
     <TypeScriptCompile Include="typings\reflect-metadata.d.ts" />
     <TypeScriptCompile Include="views\animation-main.ts" />
     <TypeScriptCompile Include="views\app.ts" />
     <TypeScriptCompile Include="views\blur-image.ts" />
     <TypeScriptCompile Include="views\child-router.ts" />
-    <TypeScriptCompile Include="views\esri-map.ts" />
+    <TypeScriptCompile Include="views\esri-globe.ts" />
     <TypeScriptCompile Include="views\flickr.ts" />
     <TypeScriptCompile Include="views\main.ts" />
     <TypeScriptCompile Include="views\users.ts" />
