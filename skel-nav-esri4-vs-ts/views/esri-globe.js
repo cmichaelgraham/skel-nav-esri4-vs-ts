@@ -1,10 +1,18 @@
-define(["require", "exports", "esri/Map", "esri/views/SceneView"], function (require, exports, EMap, SceneView) {
+define(["require", "exports", "esri/Map", "esri/views/SceneView", "esri/layers/ArcGISDynamicLayer"], function (require, exports, EMap, SceneView, ArcGISDynamicLayer) {
     var EsriGlobe = (function () {
         function EsriGlobe() {
         }
         EsriGlobe.prototype.attached = function () {
+            // Earth quake layer
+            var poolPermitLyr = new ArcGISDynamicLayer({
+                url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/PoolPermits/MapServer"
+            });
+            var eqLyr = new ArcGISDynamicLayer({
+                url: "https://tmservices1.esri.com/arcgis/rest/services/LiveFeeds/Earthquakes/MapServer"
+            });
             this.map = new EMap({
-                basemap: "streets"
+                basemap: "streets",
+                layers: [eqLyr, poolPermitLyr]
             });
             this.view = new SceneView({
                 container: "globe",

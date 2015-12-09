@@ -1,5 +1,6 @@
 import EMap = require("esri/Map");
 import SceneView = require("esri/views/SceneView");
+import ArcGISDynamicLayer = require("esri/layers/ArcGISDynamicLayer");
 import domReady = require("dojo/domReady!");
 
 export class EsriGlobe {
@@ -7,8 +8,18 @@ export class EsriGlobe {
     view: SceneView;
     constructor() { }
     attached() {
+        // Earth quake layer
+        var poolPermitLyr = new ArcGISDynamicLayer({
+            url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/PoolPermits/MapServer"
+        });
+
+        var eqLyr = new ArcGISDynamicLayer({
+            url: "https://tmservices1.esri.com/arcgis/rest/services/LiveFeeds/Earthquakes/MapServer"
+        });
+
         this.map = new EMap({
-            basemap: "streets"
+            basemap: "streets",
+            layers: [eqLyr, poolPermitLyr]
         });
 
         this.view = new SceneView({

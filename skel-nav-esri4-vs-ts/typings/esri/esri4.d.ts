@@ -12,4 +12,11 @@ declare module "esri/views/SceneView" {
     export = SceneView;
 }
 
+declare module "esri/layers/ArcGISDynamicLayer" {
+    class ArcGISDynamicLayer {
+        constructor(obj: Object);
+    }
+    export = ArcGISDynamicLayer;
+}
+
 declare module "dojo/domReady!" { }
