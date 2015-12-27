@@ -1,6 +1,7 @@
 ﻿declare module "esri/Map" {
     class Map {
         constructor(obj: Object);
+        add(obj: Object);
     }
     export = Map;
 }
@@ -17,6 +18,35 @@ declare module "esri/layers/ArcGISDynamicLayer" {
         constructor(obj: Object);
     }
     export = ArcGISDynamicLayer;
+}
+
+declare module "esri/layers/FeatureLayer" {
+    class FeatureLayer {
+        constructor(obj: Object);
+    }
+    export = FeatureLayer;
+}
+
+declare module "esri/renderers/SimpleRenderer" {
+    class SimpleRenderer {
+        constructor(obj: Object);
+    }
+    export = SimpleRenderer;
+}
+
+declare module "esri/symbols/SimpleLineSymbol" {
+    class SimpleLineSymbol {
+        constructor(obj: Object);
+    }
+    export = SimpleLineSymbol;
+}
+}
+
+declare module "esri/layers/ArcGISTiledLayer" {
+    class ArcGISTiledLayer {
+        constructor(obj: Object);
+    }
+    export = ArcGISTiledLayer;
 }
 
 declare module "dojo/domReady!" { }

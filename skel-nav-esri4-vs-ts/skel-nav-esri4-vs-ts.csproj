@@ -125,7 +125,6 @@
     <TypeScriptCompile Include="typings\core-js\core-js.d.ts" />
     <TypeScriptCompile Include="typings\dojo\dojo.d.ts" />
     <TypeScriptCompile Include="typings\es6.d.ts" />
-    <TypeScriptCompile Include="typings\esri\esri.d.ts" />
     <TypeScriptCompile Include="typings\esri\esri4.d.ts" />
     <TypeScriptCompile Include="typings\nprogress.d.ts" />
     <TypeScriptCompile Include="typings\reflect-metadata.d.ts" />

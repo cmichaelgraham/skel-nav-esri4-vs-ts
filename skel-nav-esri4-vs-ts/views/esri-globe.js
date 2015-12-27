@@ -1,4 +1,4 @@
-define(["require", "exports", "esri/Map", "esri/views/SceneView", "esri/layers/ArcGISDynamicLayer"], function (require, exports, EMap, SceneView, ArcGISDynamicLayer) {
+define(["require", "exports", "esri/Map", "esri/views/SceneView", "esri/layers/ArcGISDynamicLayer", "esri/layers/FeatureLayer", "esri/renderers/SimpleRenderer", "esri/symbols/SimpleLineSymbol"], function (require, exports, EMap, SceneView, ArcGISDynamicLayer, FeatureLayer, SimpleRenderer, SimpleLineSymbol) {
     var EsriGlobe = (function () {
         function EsriGlobe() {
         }
@@ -12,13 +12,25 @@ define(["require", "exports", "esri/Map", "esri/views/SceneView", "esri/layers/A
                 url: "https://tmservices1.esri.com/arcgis/rest/services/LiveFeeds/Earthquakes/MapServer"
             });
             // Demographics layer
-            var demLyr = new ArcGISDynamicLayer({
-                url: "http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer"
+            //var demLyr = new ArcGISDynamicLayer({
+            //    url: "http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer"
+            //});
+            // US Counties - Feature Layer
+            var usCountiesLyr = new FeatureLayer({
+                url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Counties_Generalized/FeatureServer/0",
+                opacity: 0.33,
+                renderer: new SimpleRenderer({
+                    "type": "simple",
+                    "symbol": new SimpleLineSymbol({
+                        "color": [0, 0, 0, 255]
+                    })
+                })
             });
             this.map = new EMap({
                 basemap: "streets",
-                layers: [demLyr, eqLyr, poolPermitLyr]
+                layers: [eqLyr, poolPermitLyr]
             });
+            this.map.add(usCountiesLyr);
             this.view = new SceneView({
                 container: "globe",
                 map: this.map,
