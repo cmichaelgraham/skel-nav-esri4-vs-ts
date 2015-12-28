@@ -40,7 +40,6 @@ declare module "esri/symbols/SimpleLineSymbol" {
     }
     export = SimpleLineSymbol;
 }
-}
 
 declare module "esri/layers/ArcGISTiledLayer" {
     class ArcGISTiledLayer {

@@ -18,7 +18,7 @@ define(["require", "exports", "esri/Map", "esri/views/SceneView", "esri/layers/A
             // US Counties - Feature Layer
             var usCountiesLyr = new FeatureLayer({
                 url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Counties_Generalized/FeatureServer/0",
-                opacity: 0.33,
+                opacity: 0.13,
                 renderer: new SimpleRenderer({
                     "type": "simple",
                     "symbol": new SimpleLineSymbol({
