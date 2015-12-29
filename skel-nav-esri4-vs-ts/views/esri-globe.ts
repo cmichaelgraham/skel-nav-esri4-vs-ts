@@ -1,3 +1,7 @@
+import {inject} from 'aurelia-framework';
+import {EsriGlobeService} from './esri-globe-service';
+
+// esri imports
 import EMap = require("esri/Map");
 import SceneView = require("esri/views/SceneView");
 import ArcGISDynamicLayer = require("esri/layers/ArcGISDynamicLayer");
@@ -6,11 +10,23 @@ import SimpleRenderer = require("esri/renderers/SimpleRenderer");
 import SimpleLineSymbol = require("esri/symbols/SimpleLineSymbol");
 import domReady = require("dojo/domReady!");
 
+@inject(EsriGlobeService)
 export class EsriGlobe {
     map: EMap;
     view: SceneView;
-    constructor() { }
+    esriGlobeService: EsriGlobeService;
+
+    constructor(esriGlobeService: EsriGlobeService) {
+        this.esriGlobeService = esriGlobeService;
+    }
+
     attached() {
+        if (this.esriGlobeService.isConfigured) {
+            return;
+        }
+
+        this.esriGlobeService.isConfigured = true;
+
         // Pool permit layer
         var poolPermitLyr = new ArcGISDynamicLayer({
             url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/PoolPermits/MapServer"

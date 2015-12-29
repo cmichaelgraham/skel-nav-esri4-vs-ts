@@ -1,11 +1,12 @@
 ﻿import {customElement, bindable, noView, inject, Container} from "aurelia-framework";
-import {ViewCompiler, ViewResources, ViewSlot, View, ViewFactory} from 'aurelia-templating';
+import {ViewCompiler, ViewResources, ViewSlot, View, ViewFactory, processContent} from 'aurelia-templating';
 import {ResourcePool} from './resource-pool';
 
 var hasTemplateElement = ('content' in document.createElement('template'));
 
 @customElement('resource-pooled')
 @noView
+@processContent(false)
 @inject(Element, ResourcePool, ViewCompiler, ViewResources, ViewSlot, Container)
 export class ResourcePooled {
 

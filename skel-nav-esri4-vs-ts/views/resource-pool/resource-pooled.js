@@ -55,6 +55,7 @@ define(["require", "exports", "aurelia-framework", 'aurelia-templating', './reso
         ResourcePooled = __decorate([
             aurelia_framework_1.customElement('resource-pooled'),
             aurelia_framework_1.noView,
+            aurelia_templating_1.processContent(false),
             aurelia_framework_1.inject(Element, resource_pool_1.ResourcePool, aurelia_templating_1.ViewCompiler, aurelia_templating_1.ViewResources, aurelia_templating_1.ViewSlot, aurelia_framework_1.Container), 
             __metadata('design:paramtypes', [Element, resource_pool_1.ResourcePool, aurelia_templating_1.ViewCompiler, aurelia_templating_1.ViewResources, aurelia_templating_1.ViewSlot, aurelia_framework_1.Container])
         ], ResourcePooled);

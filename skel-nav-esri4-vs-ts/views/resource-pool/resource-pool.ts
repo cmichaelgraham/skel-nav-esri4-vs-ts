@@ -3,7 +3,7 @@
 
     constructor() {
         this.pools = {};
-    }
+    } 
 
     get(poolName, name, create) {
         var resources = this._getResources(poolName, name);
