@@ -2,7 +2,6 @@ define(["require", "exports"], function (require, exports) {
     function configure(aurelia) {
         aurelia.use
             .standardConfiguration()
-            .globalResources('views/router-view-esri')
             .developmentLogging();
         aurelia.loader.textPluginName = 'text';
         aurelia.start().then(function (a) { return a.setRoot('views/app'); });

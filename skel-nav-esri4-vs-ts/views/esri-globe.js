@@ -9,16 +9,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-define(["require", "exports", 'aurelia-framework', './esri-globe-service', "esri/Map", "esri/views/SceneView", "esri/layers/ArcGISDynamicLayer", "esri/layers/FeatureLayer", "esri/renderers/SimpleRenderer", "esri/symbols/SimpleLineSymbol"], function (require, exports, aurelia_framework_1, esri_globe_service_1, EMap, SceneView, ArcGISDynamicLayer, FeatureLayer, SimpleRenderer, SimpleLineSymbol) {
+define(["require", "exports", 'aurelia-framework', './app', "esri/Map", "esri/views/SceneView", "esri/layers/ArcGISDynamicLayer", "esri/layers/FeatureLayer", "esri/renderers/SimpleRenderer", "esri/symbols/SimpleLineSymbol"], function (require, exports, aurelia_framework_1, app_1, EMap, SceneView, ArcGISDynamicLayer, FeatureLayer, SimpleRenderer, SimpleLineSymbol) {
     var EsriGlobe = (function () {
-        function EsriGlobe(esriGlobeService) {
-            this.esriGlobeService = esriGlobeService;
+        function EsriGlobe(app) {
+            this.app = app;
         }
+        EsriGlobe.prototype.detached = function () {
+            this.app.mapVisible = false;
+        };
         EsriGlobe.prototype.attached = function () {
-            if (this.esriGlobeService.isConfigured) {
+            this.app.mapVisible = true;
+            if (this.app.mapInitialized) {
                 return;
             }
-            this.esriGlobeService.isConfigured = true;
+            this.app.mapInitialized = true;
             // Pool permit layer
             var poolPermitLyr = new ArcGISDynamicLayer({
                 url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/PoolPermits/MapServer"
@@ -55,8 +59,8 @@ define(["require", "exports", 'aurelia-framework', './esri-globe-service', "esri
             });
         };
         EsriGlobe = __decorate([
-            aurelia_framework_1.inject(esri_globe_service_1.EsriGlobeService), 
-            __metadata('design:paramtypes', [esri_globe_service_1.EsriGlobeService])
+            aurelia_framework_1.inject(app_1.App), 
+            __metadata('design:paramtypes', [app_1.App])
         ], EsriGlobe);
         return EsriGlobe;
     })();

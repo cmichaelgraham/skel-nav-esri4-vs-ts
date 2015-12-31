@@ -132,13 +132,11 @@
     <TypeScriptCompile Include="views\app.ts" />
     <TypeScriptCompile Include="views\blur-image.ts" />
     <TypeScriptCompile Include="views\child-router.ts" />
-    <TypeScriptCompile Include="views\esri-globe-service.ts" />
     <TypeScriptCompile Include="views\esri-globe.ts" />
     <TypeScriptCompile Include="views\flickr.ts" />
     <TypeScriptCompile Include="views\main.ts" />
     <TypeScriptCompile Include="views\resource-pool\resource-pool.ts" />
     <TypeScriptCompile Include="views\resource-pool\resource-pooled.ts" />
-    <TypeScriptCompile Include="views\router-view-esri.ts" />
     <TypeScriptCompile Include="views\users.ts" />
     <TypeScriptCompile Include="views\welcome.ts" />
   </ItemGroup>

@@ -1,7 +1,11 @@
 import {Router} from 'aurelia-router';
+import {singleton} from 'aurelia-framework';
 
+@singleton()
 export class App {
     router: Router;
+    mapVisible: boolean = false;
+    mapInitialized: boolean = false;
 
     configureRouter(config, router: Router) {
         config.title = 'Aurelia';

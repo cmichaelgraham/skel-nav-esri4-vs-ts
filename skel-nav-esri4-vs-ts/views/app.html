@@ -1,9 +1,12 @@
 <template>
-  <require from='./nav-bar.html'></require>
+    <require from='./nav-bar.html'></require>
 
-  <nav-bar router.bind="router"></nav-bar>
+    <nav-bar router.bind="router"></nav-bar>
 
-  <div class="page-host">
-    <router-view-esri></router-view-esri>
-  </div>
+    <div class="page-host" show.bind="!mapVisible">
+        <router-view></router-view>
+    </div>
+
+    <div id="globe" class="page-host" 
+         style="visibility: ${mapVisible ? 'visible' : 'hidden'}"></div>
 </template>
