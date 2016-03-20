@@ -18,6 +18,7 @@ define(["require", "exports", 'aurelia-framework', './app', "esri/Map", "esri/vi
             this.app.mapVisible = false;
         };
         EsriGlobe.prototype.attached = function () {
+            var _this = this;
             this.app.mapVisible = true;
             if (this.app.mapInitialized) {
                 return;
@@ -53,10 +54,71 @@ define(["require", "exports", 'aurelia-framework', './app', "esri/Map", "esri/vi
             this.map.add(usCountiesLyr);
             this.view = new SceneView({
                 container: "globe",
+                camera: { tilt: 80 },
                 map: this.map,
-                scale: 50000000,
+                scale: 1000000,
                 center: [-101.17, 21.78]
             });
+            //Register events to control
+            this.rotateAntiClockwiseSpan = window.document.getElementById("rotateAntiClockwiseSpan");
+            this.rotateClockwiseSpan = window.document.getElementById("rotateClockwiseSpan");
+            this.indicatorSpan = window.document.getElementById("indicatorSpan");
+            this.tiltzoom = window.document.getElementById("tiltzoom");
+            this.rotateClockwiseSpan.onclick = function (ev) { _this.rotateView(-1); };
+            this.rotateAntiClockwiseSpan.onclick = function (ev) { _this.rotateView(1); };
+            this.indicatorSpan.onclick = function (ev) { _this.tiltView; };
+            this.tiltzoom.onclick = function (ev) {
+                _this.map.layers = [];
+                _this.view.animateTo({
+                    position: [7.654, 45.919, 5183],
+                    tilt: 80
+                });
+                _this.map.basemap = 'hybrid';
+            };
+            //Watch the change on view.camera
+            this.view.watch("camera", function (cam) { _this.updateIndicator(cam); });
+        };
+        //Create the event's callback functions
+        EsriGlobe.prototype.rotateView = function (direction) {
+            var heading = this.view.camera.heading;
+            // Set the heading of the view to the closest multiple of 45 degrees,
+            // depending on the direction of rotation
+            if (direction > 0) {
+                heading = Math.floor((heading + 1e-3) / 45) * 45 + 45;
+            }
+            else {
+                heading = Math.ceil((heading - 1e-3) / 45) * 45 - 45;
+            }
+            this.view.animateTo({
+                heading: heading
+            });
+        };
+        EsriGlobe.prototype.tiltView = function () {
+            // Get the camera tilt and add a small number for numerical inaccuracies
+            var tilt = this.view.camera.tilt + 1e-3;
+            // Switch between 3 levels of tilt
+            if (tilt >= 80) {
+                tilt = 0;
+            }
+            else if (tilt >= 40) {
+                tilt = 80;
+            }
+            else {
+                tilt = 40;
+            }
+            this.view.animateTo({
+                tilt: tilt
+            });
+        };
+        EsriGlobe.prototype.updateIndicator = function (camera) {
+            var tilt = camera.tilt;
+            var heading = camera.heading;
+            // Update the indicator to reflect the current tilt/heading using
+            // css transforms.
+            var transform = "rotateX(" + 0.8 * tilt +
+                "deg) rotateY(0) rotateZ(" + -heading + "deg)";
+            this.indicatorSpan.style["transform"] = transform;
+            this.indicatorSpan.style["-webkit-transform"] = transform; //Solution for Safari
         };
         EsriGlobe = __decorate([
             aurelia_framework_1.inject(app_1.App), 

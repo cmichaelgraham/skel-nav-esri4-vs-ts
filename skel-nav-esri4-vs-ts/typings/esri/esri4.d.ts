@@ -2,6 +2,8 @@
     class Map {
         constructor(obj: Object);
         add(obj: Object);
+        basemap: string;
+        layers: Array<any>;
     }
     export = Map;
 }
@@ -9,6 +11,9 @@
 declare module "esri/views/SceneView" {
     class SceneView {
         constructor(obj: Object);
+        watch(s: string, camera: any);
+        camera: any;
+        animateTo(obj: Object);
     }
     export = SceneView;
 }
